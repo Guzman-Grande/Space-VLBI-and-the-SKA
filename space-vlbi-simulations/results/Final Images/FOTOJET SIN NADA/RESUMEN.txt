@@ -1,0 +1,62 @@
+
+Stations: 7, baselines: 21
+---------------------------------------------------------------------
+uv max: 1.1 x 10^4 km, 0.9 x 10^4 km, rmax = 1.102 x 10^4 km
+[INFO] Resolución reducida: cellsize = 0.0300 mas
+
+[FREQ 0.33 GHz] Res: 0.0172 mas | Cell: 0.0300 mas | Grid: 10000×10000 | FOV ≈ 300.0 mas
+------------------ DATOS IMAGEN RECENTRADA -------------------
+[DEBUG] RA offset (as) tras centrar: min=-0.153, max=0.153
+[DEBUG] Dec offset (as) tras centrar: min=-0.070, max=0.070
+[DEBUG] Nuevo RA0 (rad): 2.333570, Nuevo Dec0 (rad): 0.350961
+--------------------------------------------------------------
+--------------- FLUXES (read_pixel_file) recentrada -------------
+  - Número de píxeles       : 1053
+  - Flujo máximo (Jy/píxel): 0.009675
+  - Flujo mínimo (Jy/píxel): 0.000040
+  - Valor medio (mean)             : 0.000950 Jy/píxel
+  - Desviación estándar (std)      : 0.001603 Jy/píxel
+  - Total de flujo integrado (sum) : 1.000000 Jy
+----------------------------------------------------------------
+----- FLUXES (pre-FOV cut) -----
+ píxeles: 1053 | max: 0.009675 Jy | min: 0.000040 Jy | mean: 0.000950 Jy | sum: 1.000000 Jy
+--------------------------------
+ half_fov: 150.0 | 
+–––––––––––––––––––––––––––––––––––––
+   Resumen de píxeles seleccionados
+–––––––––––––––––––––––––––––––––––––
+ Total de píxeles: 1042
+
+R.A. (rad):
+  min = 2.333569,  max = 2.333571
+  mean= 2.333570,  std = 0.000000
+  RA0 2.333570,  DEC0 = 0.350961
+
+Dec (rad):
+  min = 0.350960,  max = 0.350961
+  mean= 0.350961,  std = 0.000000
+
+R.A. (mas):
+  min = 481333209.113112,  max = 481333515.808387
+  mean= 481333352.876522,  std = 86.635439
+
+Dec (mas):
+  min = 72390783.600000,  max = 72390924.000000
+  mean= 72390859.137812,  std = 35.145781
+----- FLUXES (post-FOV cut) -----
+ píxeles: 1042 | FOV importado: 288.0 mas | max: 0.009675 Jy | min: 0.000040 Jy | sum: 0.999558 Jy
+---------------------------------
+Stations: 7, baselines: 21
+No vis in bl 19
+[INFO] Vis generadas: 8006
+--------------------------------------------------------------------------------------
+[DEBUG] Estaciones cargadas:
+  - Green Banck Telescope, SEFD: 35.0, tipo: EarthFixed
+  - Lovell Telescope, SEFD: 132.0, tipo: EarthFixed
+  - SKA-Low core, SEFD: 2.38, tipo: EarthFixed
+  - Effelsberg, SEFD: 600.0, tipo: EarthFixed
+  - Very Large Array, SEFD: 167, tipo: EarthFixed
+  - Jodrell Bank (Mrk 1), SEFD: 132.0, tipo: EarthFixed
+  - Giant Metrewave Radio Telescope, SEFD: 55.0, tipo: EarthFixed
+--------------------------------------------------------------------------------------
+vis shape:  (16012,)

@@ -1,0 +1,69 @@
+Stations: 13, baselines: 78
+Station LOVEX :
+KeplerianElements:
+    Semimajor axis (a)                           =  10335.095 km
+    Eccentricity (e)                             =      0.807289
+    Inclination (i)                              =    119.3 deg
+    Right ascension of the ascending node (raan) =      0.0 deg
+    Argument of perigee (arg_pe)                 =      0.0 deg
+    Mean anomaly at reference epoch (M0)         =      0.0 deg
+    Period (T)                                   = 1 day, 2:11:46.619321
+    Reference epoch (ref_epoch)                  = 2020-03-11 00:00:00
+        Mean anomaly (M)                         =      0.0 deg
+        Time (t)                                 = 0:00:00
+        Epoch (epoch)                            = 2020-03-11 00:00:00
+
+Stations: 14, baselines: 91
+---------------------------------------------------------------------
+SLFRO simulated scans:
+    Total days simulated   : 28
+    Orbital period          : 26.18 hours
+    Scans per period          : 1
+    Duration per scan      : 4 hours
+    Time resolution        : 60 seconds
+    Number of timestamps   : 6240
+    Total scans simulated  : 26
+---------------------------------------------------------------------
+uv max: 36.2 x 10^4 km, 18.0 x 10^4 km, rmax = 36.188 x 10^4 km
+[INFO] Cellsize PRIMERO: 0.00017 mas
+[INFO] Resolución esperada: 0.001 mas
+[INFO] Cellsize fijado: 0.00017 mas
+[INFO] Campo de visión ajustado: 0.700 mas
+[INFO] Tamaño de malla: 4096 x 4096
+Grid cell size:0.00017 mas
+Image size: 4096 x 4096 pixels (0.70 mas field of view)
+---------------------------------------------------------------------
+                         RESOLUTION RANGE                            
+resolution at 8.000 GHz (λ = 0.037 m): 0.021 mas.
+resolution at 200.000 GHz (λ = 0.002 m): 0.001 mas.
+---------------------------------------------------------------------
+Cell size given the SMBH image at : 0.00008 mas.
+[INFO] Cell size: 0.00017 mas, dra = 8.29e-13 rad
+[INFO] Imagen adaptada al FOV = 0.700 mas con resolución 0.00017 mas/pixel
+[INFO] Se usarán 16777216 píxeles con flujo > 0.01 Jy
+No vis in bl 58
+No vis in bl 59
+No vis in bl 61
+No vis in bl 65
+No vis in bl 66
+No vis in bl 68
+[DEBUG] Visibilidades generadas: 129528
+--------------------------------------------------------------------------------------
+[DEBUG] Estaciones cargadas:
+  - Effelsberg, SEFD: 20.0, tipo: EarthFixed
+  - Cambridge, SEFD: 320.0, tipo: EarthFixed
+  - Yebes, SEFD: 220.0, tipo: EarthFixed
+  - Urumqi, SEFD: 350.0, tipo: EarthFixed
+  - TMRT Tianma, SEFD: 48.0, tipo: EarthFixed
+  - ROBLEDO 70m, SEFD: 27.0, tipo: EarthFixed
+  - ROBLEDO 34m, SEFD: 106.0, tipo: EarthFixed
+  - Green Banck Telescope, SEFD: 15.0, tipo: EarthFixed
+  - SKA-MID core, SEFD: 2.38, tipo: EarthFixed
+  - Parkes, SEFD: 43.0, tipo: EarthFixed
+  - ATCA, SEFD: 47.0, tipo: EarthFixed
+  - Very Large Array, SEFD: 10.7, tipo: EarthFixed
+  - Tidbinbilla, SEFD: 25.0, tipo: EarthFixed
+  - LOVEX , SEFD: 750, tipo: LunarOrbit
+--------------------------------------------------------------------------------------
+Warning: Skipping FITS-IDI export due to empty or invalid baseline data.
+vis shape:  (518112,)

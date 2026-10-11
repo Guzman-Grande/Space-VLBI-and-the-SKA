@@ -1,0 +1,94 @@
+-------------------------------------
+drive_fs log started
+version: 106.0.4.0
+changelist 740548515 with baseline 736951441 in a mint client based on //depot/branches/drive_fs_release_branch/736951441.1/google3
+-------------------------------------
+2025-04-19T11:46:55.749ZI [3438:log_writer_thread] instrumentation.cc:113:OpenLogFileInDirectory Logging to /content/drive/MyDrive/omniuv-master/.config/Google/DriveFS/Logs/drive_fs.txt
+2025-04-19T11:46:55.755ZE [3433:drive] drive_fs_main.cc:278:SetUpCrashHandler Failed to initialize crash handler: NOT_FOUND: Could not find crashpad handler binary [type.googleapis.com/drive.ds.Status='UNAVAILABLE_RESOURCE']
+=== Source Location Trace: ===
+apps/drive/fs/crash/crash.cc:148
+
+2025-04-19T11:46:55.756ZI [3433:drive] drive_fs_main.cc:523:PrintCommandLine /opt/google/drive/drive --push_changes_and_quit --single_process --timeout_sec=86400 
+2025-04-19T11:46:55.756ZI [3433:drive] drive_fs_main.cc:164:InitializeLanguage Initializing with detected language: en
+2025-04-19T11:46:55.756ZI [3433:drive] i18n.cc:342:InitializeI18n I18n initialized with en
+2025-04-19T11:46:55.756ZI [3433:drive] drive_fs.cc:648:RunDriveFS Options: go/debugonly    
+argv_0: "/opt/google/drive/drive"
+base_path: "/content/drive/MyDrive/omniuv-master/.config/Google/DriveFS"
+ipc_pipe_path: "/tmp/drivefs_ipc.0"
+shell_ipc_pipe_path: "/tmp/drivefs_ipc.0_shell"
+enable_tracing: false
+enable_ui: false
+enable_file_dances: true
+enable_poll_for_changes: true
+drive_create_options {
+  use_fake_cloud_store: false
+  authorize_new_user: false
+  refresh_token: go/redact-debug-string
+  user_email: ""
+  token_uri: ""
+  auth_uri: ""
+  metadata_server_auth_uri: ""
+  user_id: ""
+  app_properties {
+    canary: false
+    os_info {
+      type: LINUX
+      architecture: "x86_64"
+      major_version: 0
+      minor_version: 0
+      build_version: 0
+    }
+    channel: CHANNEL_PROD
+  }
+  signup_uri: ""
+}
+enable_field_event_recording: true
+open_gdoc_path: ""
+started_by_installer: false
+locale: ""
+force_onboarding: false
+crash_handler_init_status: UNAVAILABLE_RESOURCE
+cello_options {
+  drive_api_options {
+    apiary_trace_token: ""
+    apiary_trace_regex: ""
+  }
+}
+open_gdocs_root: false
+open_gsheets_root: false
+open_gslides_root: false
+crash_on_core_start: false
+use_curl_logging_scribe: false
+force_case_sensitivity: false
+new_gsuite_file: ""
+account_settings_from_file_path: ""
+parent_version: ""
+open_all_dialogs: false
+startup_mode: false
+fake_multiaccount_ui: false
+feature_config_override {
+  account {
+  }
+}
+global_feature_config {
+}
+photos_scope: ""
+show_sign_in_dialog_if_no_user: false
+crash_in_execution_context: false
+enable_physical_http_logging: false
+trigger_lost_and_found_event: false
+override_support_status: -1
+disable_change_replayer_for_testing: false
+trigger_fake_db_corruption: false
+terminate_core_before_start: false
+
+2025-04-19T11:46:55.756ZI [3433:drive] drive_fs.cc:180:LogSystemConfig OS: 6.1.123+ #1 SMP PREEMPT_DYNAMIC Sun Mar 30 16:01:29 UTC 2025
+2025-04-19T11:46:55.756ZI [3433:drive] drive_fs.cc:187:LogSystemConfig Architecture: x86_64
+2025-04-19T11:46:55.761ZI [3433:drive] drive_fs.cc:193:LogSystemConfig Up time: 12m18s
+2025-04-19T11:46:55.761ZI [3433:drive] drive_fs.cc:201:LogSystemConfig Total RAM: 12.67 GiB
+2025-04-19T11:46:55.762ZI [3433:drive] drive_fs.cc:216:LogSystemConfig Disk space: 75.89 GB free / 115.66 GB total
+2025-04-19T11:46:55.762ZI [3433:drive] drive_fs.cc:223:LogSystemConfig Timezone: UTC+0000 (UTC)
+2025-04-19T11:46:55.762ZI [3433:drive] remote_control_client.cc:193:operator() Sending remote request go/debugonly    
+push_changes_and_quit: true
+timeout_sec: 86400
+

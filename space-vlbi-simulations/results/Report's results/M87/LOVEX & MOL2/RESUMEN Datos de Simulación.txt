@@ -1,0 +1,104 @@
+---------------------------------------------------------------------
+Earth satellite, a: 5.24 x 1E4 km, e: 0.84
+Station SLFRO Station 1:
+KeplerianElements:
+    Semimajor axis (a)                           =  52378.100 km
+    Eccentricity (e)                             =      0.840046
+    Inclination (i)                              =     30.0 deg
+    Right ascension of the ascending node (raan) =    859.4 deg
+    Argument of perigee (arg_pe)                 =      0.0 deg
+    Mean anomaly at reference epoch (M0)         =      0.0 deg
+    Period (T)                                   = 1 day, 9:08:18.667087
+    Reference epoch (ref_epoch)                  = 2020-01-01 00:00:00
+        Mean anomaly (M)                         =      0.0 deg
+        Time (t)                                 = 0:00:00
+        Epoch (epoch)                            = 2020-01-01 00:00:00
+
+Station SLFRO Station 2:
+KeplerianElements:
+    Semimajor axis (a)                           =  37378.100 km
+    Eccentricity (e)                             =      0.775855
+    Inclination (i)                              =    -30.0 deg
+    Right ascension of the ascending node (raan) =    859.4 deg
+    Argument of perigee (arg_pe)                 =      0.0 deg
+    Mean anomaly at reference epoch (M0)         =    180.0 deg
+    Period (T)                                   = 19:58:37.869449
+    Reference epoch (ref_epoch)                  = 2020-03-11 00:00:00
+        Mean anomaly (M)                         =      0.0 deg
+        Time (t)                                 = 0:00:00
+        Epoch (epoch)                            = 2020-03-11 00:00:00
+
+Stations: 13, baselines: 78
+Station LOVEX :
+KeplerianElements:
+    Semimajor axis (a)                           =  10335.095 km
+    Eccentricity (e)                             =      0.807289
+    Inclination (i)                              =    119.3 deg
+    Right ascension of the ascending node (raan) =      0.0 deg
+    Argument of perigee (arg_pe)                 =      0.0 deg
+    Mean anomaly at reference epoch (M0)         =      0.0 deg
+    Period (T)                                   = 1 day, 2:11:46.619321
+    Reference epoch (ref_epoch)                  = 2020-03-11 00:00:00
+        Mean anomaly (M)                         =      0.0 deg
+        Time (t)                                 = 0:00:00
+        Epoch (epoch)                            = 2020-03-11 00:00:00
+
+Stations: 15, baselines: 105
+---------------------------------------------------------------------
+SLFRO simulated scans:
+    Total days simulated   : 28
+    Orbital period          : 26.18 hours
+    Scans per period          : 1
+    Duration per scan      : 4 hours
+    Time resolution        : 60 seconds
+    Number of timestamps   : 12480
+    Total scans simulated  : 52
+---------------------------------------------------------------------
+uv max: 42.0 x 10^4 km, 20.5 x 10^4 km, rmax = 41.984 x 10^4 km
+[INFO] Resolución esperada: 0.0164 mas
+[INFO] Cellsize fijado: 0.00164 mas
+[INFO] Campo de visión ajustado: 0.070 mas
+[INFO] Tamaño de malla: 64 x 64
+Grid cell size:0.00164 mas
+Image size: 64 x 64 pixels (0.10 mas field of view)
+---------------------------------------------------------------------
+                         RESOLUTION RANGE                            
+resolution at 1.400 GHz (λ = 0.214 m): 0.1053 mas.
+resolution at 5.000 GHz (λ = 0.060 m): 0.0295 mas.
+resolution at 8.000 GHz (λ = 0.037 m): 0.0184 mas.
+resolution at 9.000 GHz (λ = 0.033 m): 0.0164 mas.
+resolution at 289.000 GHz (λ = 0.001 m): 0.0005 mas.
+---------------------------------------------------------------------
+Cell size given the SMBH image at : 0.00008 mas.
+[INFO] Cell size: 0.00164 mas, dra = 7.94e-12 rad
+[INFO] Imagen adaptada al FOV = 0.105 mas con resolución 0.00164 mas/pixel
+[INFO] Se usarán 4096 píxeles con flujo > 0.01 Jy
+No vis in bl 63
+No vis in bl 64
+No vis in bl 66
+No vis in bl 71
+No vis in bl 72
+No vis in bl 74
+[DEBUG] Visibilidades generadas: 338372
+--------------------------------------------------------------------------------------
+[DEBUG] Estaciones cargadas:
+  - Effelsberg, SEFD: 20.0, tipo: EarthFixed
+  - Cambridge, SEFD: 320.0, tipo: EarthFixed
+  - Yebes, SEFD: 220.0, tipo: EarthFixed
+  - Urumqi, SEFD: 350.0, tipo: EarthFixed
+  - TMRT Tianma, SEFD: 48.0, tipo: EarthFixed
+  - ROBLEDO 70m, SEFD: 27.0, tipo: EarthFixed
+  - ROBLEDO 34m, SEFD: 106.0, tipo: EarthFixed
+  - Green Banck Telescope, SEFD: 15.0, tipo: EarthFixed
+  - SKA-MID core, SEFD: 2.38, tipo: EarthFixed
+  - Parkes, SEFD: 43.0, tipo: EarthFixed
+  - ATCA, SEFD: 47.0, tipo: EarthFixed
+  - Very Large Array, SEFD: 10.7, tipo: EarthFixed
+  - Tidbinbilla, SEFD: 25.0, tipo: EarthFixed
+  - LOVEX , SEFD: 200, tipo: LunarOrbit
+  - me, SEFD: 200, tipo: MoonEarthL2
+--------------------------------------------------------------------------------------
+Warning: Skipping FITS-IDI export due to empty or invalid baseline data.
+gen_beam_fft(): select 3117184 out of 3383720 vis
+vis shape:  (3383720,)
+gen_image_fft(): select 3117184 out of 3383720 vis

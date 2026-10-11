@@ -1,0 +1,182 @@
+--- FotoJet Estaciones Random (Final).ipynb cell 17
++++ fotojet_custom_array_1p4ghz.py
+@@ -1,4 +1,79 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
++"""fotojet_custom_array_1p4ghz: local adaptation of FotoJet Estaciones Random (Final).ipynb.
++Input type: txt. Run inside the project containing omni-uv/ and data/.
++Scientific parameters are retained; see README.md for documented repairs.
++"""
++import argparse
++import hashlib
++import json
++import os
++import sys
++from pathlib import Path
++from datetime import datetime
++
++_SCRIPT_PATH = Path(__file__).resolve()
++PROJECT_ROOT = next((p for p in _SCRIPT_PATH.parents
++                     if (p / 'omni-uv' / 'omniuv').is_dir()),
++                    _SCRIPT_PATH.parent.parent)
++
++def _prepare_local_run():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--input', type=Path,
++                        default=PROJECT_ROOT / 'data' / 'Fotojet.txt',
++                        help='Input path; relative paths refer to the terminal directory.')
++    parser.add_argument('--output', type=Path, help='Output directory (default: a new directory for each run).')
++    parser.add_argument('--show', action='store_true', help='Allow figure windows.')
++    parser.add_argument('--check-input', action='store_true', help='Validate the input without running OmniUV.')
++    parser.add_argument('--max-nc', type=int, help='Optional FFT grid cap; changes resolution. Default: original behavior.')
++    options = parser.parse_args()
++    options.input = options.input.expanduser().resolve()
++    if not options.input.is_file():
++        parser.error(f'Input file not found: {options.input}. Use --input to select a file.')
++    import numpy as _np
++    try:
++        pixels = _np.loadtxt(options.input, comments='#', ndmin=2)
++    except (OSError, ValueError) as error:
++        parser.error(f'Cannot read the pixel table: {error}')
++    if pixels.size == 0 or pixels.shape[1] != 3 or not _np.isfinite(pixels).all():
++        parser.error('Expected three finite numeric columns: x [arcsec], y [arcsec], flux [Jy/pixel].')
++    if not _np.any(pixels[:, 2] > 0):
++        parser.error('No positive-flux pixels found.')
++    if options.max_nc is not None and options.max_nc < 2:
++        parser.error('--max-nc must be at least 2.')
++    if options.check_input:
++        print(f'TXT OK: {pixels.shape[0]} rows, 3 columns; {_np.count_nonzero(pixels[:,2] > 0)} positive-flux pixels.')
++        print('Input-header frequencies are not applied automatically.')
++    if options.check_input:
++        raise SystemExit(0)
++    root = PROJECT_ROOT / 'omni-uv'
++    if not (root / 'omniuv').is_dir():
++        parser.error('Cannot find omni-uv/omniuv. Place this script inside your project.')
++    sys.path[:0] = [str(root), str(root / 'omniuv'), str(root / 'omniuv' / 'orbital'), str(root / 'dro')]
++    import matplotlib
++    if not options.show:
++        matplotlib.use('Agg')
++        import matplotlib.pyplot as _plt
++        _plt.show = lambda *args, **kwargs: None
++    if options.output is None:
++        options.output = PROJECT_ROOT / 'results' / 'fotojet_custom_array_1p4ghz' / datetime.now().strftime('%Y%m%d_%H%M%S_%f')
++    options.output = options.output.expanduser().resolve()
++    options.output.mkdir(parents=True, exist_ok=True)
++    metadata = {
++        'scenario': 'fotojet_custom_array_1p4ghz', 'source_notebook': 'FotoJet Estaciones Random (Final).ipynb',
++        'input_type': 'txt', 'created_at': datetime.now().astimezone().isoformat(),
++        'script_sha256': hashlib.sha256(_SCRIPT_PATH.read_bytes()).hexdigest(),
++        'input': str(options.input), 'input_sha256': hashlib.sha256(options.input.read_bytes()).hexdigest(),
++        'python': sys.version, 'command': sys.argv,
++        'note': 'Run-start record; this does not certify successful completion.',
++    }
++    (options.output / 'run_metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
++    print(f'Input: {options.input}', flush=True)
++    print(f'Results: {options.output}', flush=True)
++    os.chdir(options.output)
++    return options
++
++LOCAL_OPTIONS = _prepare_local_run()
++
+ 
+ import sys
+ import os
+@@ -13,7 +88,7 @@
+ # Specify the path that contains the omniuv package.
+ # Necessary when your source code and the pacakge are not in the same
+ # folder.
+-sys.path.append('.')
++# Local import paths are configured in the header.
+ 
+ # Import the specific OmniUV package
+ from omniuv import *
+@@ -307,7 +382,7 @@
+     plt.colorbar(label='Jy/pixel')
+     plt.gca().invert_xaxis()
+     plt.savefig("Entrada_a_OmniUV_recentrado.png")
+-    plt.show()
++    plt.show() if LOCAL_OPTIONS.show else None
+ 
+     # ----------------------- INTERPOLACIÓN PARA IMAGEN 2D -----------------------
+     from scipy.interpolate import griddata
+@@ -328,7 +403,7 @@
+     plt.ylabel("Dec offset (as)")
+     plt.gca().invert_xaxis()
+     plt.savefig("Interpolacion_2D_recentrada.png")
+-    plt.show()
++    plt.show() if LOCAL_OPTIONS.show else None
+ 
+     # ----------------------- Conversión a radianes -----------------------
+     ras  = ra0 + dx_as * (pi / (180.0 * 3600.0)) / np.cos(dec0)
+@@ -391,7 +466,7 @@
+         res_mas = 1.0 / (rmax_km * 1e3 / lam) / 1e7 / pi * 180 * 3600e3
+ 
+         # Elegir cellsize y nc controlando max_nc
+-        max_nc = 10000
++        max_nc = LOCAL_OPTIONS.max_nc or 10000
+         if (fov_mas / (res_mas / 5.0)) > max_nc:
+             task.nc       = max_nc
+             task.cellsize = fov_mas / task.nc
+@@ -399,6 +474,10 @@
+         else:
+             task.cellsize = res_mas / 5.0
+             task.nc       = int(2 ** np.ceil(np.log2(fov_mas / task.cellsize)))
++
++        if LOCAL_OPTIONS.max_nc is not None and task.nc > LOCAL_OPTIONS.max_nc:
++            task.nc = LOCAL_OPTIONS.max_nc
++            task.cellsize = fov_mas / task.nc
+ 
+         print(f"\n[FREQ {freq/1e9:.2f} GHz] Res: {res_mas:.4f} mas | "
+               f"Cell: {task.cellsize:.4f} mas | Grid: {task.nc}×{task.nc} | "
+@@ -504,7 +583,7 @@
+         plt.colorbar(label='Jy/pixel')
+         plt.gca().invert_xaxis()
+         plt.savefig("input_recortado.png")
+-        plt.show()
++        plt.show() if LOCAL_OPTIONS.show else None
+ 
+         # —————— Crear objeto imagen y asignar a la fuente ——————
+         image = Image(src)
+@@ -549,13 +628,13 @@
+         plt.ylabel("Dec offset (mas)")
+         plt.colorbar(label='Jy')
+         plt.savefig(f"sim_image_{int(freq/1e6)}MHz.png")
+-        plt.show()
++        plt.show() if LOCAL_OPTIONS.show else None
+         plt.close()
+ 
+         plt.figure()
+         plt.plot(uv[:,0]/1e7, uv[:,1]/1e7, 'b.', markersize=1)
+-        plt.xlabel('$u\ (10^4\ \mathrm{km})$')
+-        plt.ylabel('$v\ (10^4\ \mathrm{km})$')
++        plt.xlabel(r'$u\ (10^4\ \mathrm{km})$')
++        plt.ylabel(r'$v\ (10^4\ \mathrm{km})$')
+         plt.title('UV Coverage')
+         plt.grid(True)
+         plt.savefig("UV Coverage")
+@@ -1286,7 +1365,6 @@
+ #===============================================================================
+ 
+ def main():
+-    os.environ["HOME"] = "/content/drive/MyDrive/omniuv-master"
+     # Instance of Task class. Entry of the program.
+     task = Task()
+ 
+@@ -1514,14 +1592,14 @@
+     freqs_ghz=np.array([1.4e9])
+     fov_mas=0.30*1000 #0.457*1000
+ 
+-    run_simulation_from_txt("Fotojet.txt", ra_deg, dec_deg, task_params, freqs_ghz, rmax, fov_mas)
++    run_simulation_from_txt(str(LOCAL_OPTIONS.input), ra_deg, dec_deg, task_params, freqs_ghz, rmax, fov_mas)
+ 
+    # Vamos a redefinir la función plot_uv para incorporar algún tipo de límite
+     def plot_uv2(uv, cs, nc, outfile, xlim=None, ylim=None):
+          plt.figure()
+          plt.plot(uv[:,0]/1e7, uv[:,1]/1e7, 'b.', markersize=1)
+-         plt.xlabel('$u\ (10^4\ \mathrm{km})$')
+-         plt.ylabel('$v\ (10^4\ \mathrm{km})$')
++         plt.xlabel(r'$u\ (10^4\ \mathrm{km})$')
++         plt.ylabel(r'$v\ (10^4\ \mathrm{km})$')
+          plt.title('UV Coverage')
+ 
+          if xlim:

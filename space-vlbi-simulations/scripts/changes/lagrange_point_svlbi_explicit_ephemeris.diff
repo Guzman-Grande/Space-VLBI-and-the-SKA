@@ -1,0 +1,136 @@
+--- Estaciones Random (Final).ipynb cell 17
++++ lagrange_point_svlbi_explicit_ephemeris.py
+@@ -1,4 +1,78 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
++"""lagrange_point_svlbi_explicit_ephemeris: local adaptation of Estaciones Random (Final).ipynb.
++Input type: png. Run inside the project containing omni-uv/ and data/.
++Scientific parameters are retained; see README.md for documented repairs.
++"""
++import argparse
++import hashlib
++import json
++import os
++import sys
++from pathlib import Path
++from datetime import datetime
++
++_SCRIPT_PATH = Path(__file__).resolve()
++PROJECT_ROOT = next((p for p in _SCRIPT_PATH.parents
++                     if (p / 'omni-uv' / 'omniuv').is_dir()),
++                    _SCRIPT_PATH.parent.parent)
++
++def _prepare_local_run():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--input', type=Path,
++                        default=PROJECT_ROOT / 'data' / 'm87_image_normalized.png',
++                        help='Input path; relative paths refer to the terminal directory.')
++    parser.add_argument('--output', type=Path, help='Output directory (default: a new directory for each run).')
++    parser.add_argument('--show', action='store_true', help='Allow figure windows.')
++    parser.add_argument('--check-input', action='store_true', help='Validate the input without running OmniUV.')
++    # PNG grid settings remain exactly as in the original notebook.
++    options = parser.parse_args()
++    options.input = options.input.expanduser().resolve()
++    if not options.input.is_file():
++        parser.error(f'Input file not found: {options.input}. Use --input to select a file.')
++    from PIL import Image as _PILImage
++    try:
++        with _PILImage.open(options.input) as image:
++            if image.format != 'PNG':
++                parser.error('Expected a valid PNG image.')
++            image.load()
++            dimensions, mode = image.size, image.mode
++            intensity_range = image.convert('L').getextrema()
++    except (OSError, ValueError) as error:
++        parser.error(f'Cannot read the PNG: {error}')
++    if options.check_input:
++        print(f'PNG OK: {dimensions[0]} x {dimensions[1]} pixels; mode={mode}; grayscale range={intensity_range}.')
++        print('This checks image readability, not angular scale or flux calibration.')
++    if options.check_input:
++        raise SystemExit(0)
++    root = PROJECT_ROOT / 'omni-uv'
++    if not (root / 'omniuv').is_dir():
++        parser.error('Cannot find omni-uv/omniuv. Place this script inside your project.')
++    sys.path[:0] = [str(root), str(root / 'omniuv'), str(root / 'omniuv' / 'orbital'), str(root / 'dro')]
++    import matplotlib
++    if not options.show:
++        matplotlib.use('Agg')
++        import matplotlib.pyplot as _plt
++        _plt.show = lambda *args, **kwargs: None
++    if options.output is None:
++        options.output = PROJECT_ROOT / 'results' / 'lagrange_point_svlbi_explicit_ephemeris' / datetime.now().strftime('%Y%m%d_%H%M%S_%f')
++    options.output = options.output.expanduser().resolve()
++    options.output.mkdir(parents=True, exist_ok=True)
++    metadata = {
++        'scenario': 'lagrange_point_svlbi_explicit_ephemeris', 'source_notebook': 'Estaciones Random (Final).ipynb',
++        'input_type': 'png', 'created_at': datetime.now().astimezone().isoformat(),
++        'script_sha256': hashlib.sha256(_SCRIPT_PATH.read_bytes()).hexdigest(),
++        'input': str(options.input), 'input_sha256': hashlib.sha256(options.input.read_bytes()).hexdigest(),
++        'python': sys.version, 'command': sys.argv,
++        'note': 'Run-start record; this does not certify successful completion.',
++    }
++    (options.output / 'run_metadata.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
++    print(f'Input: {options.input}', flush=True)
++    print(f'Results: {options.output}', flush=True)
++    os.chdir(options.output)
++    return options
++
++LOCAL_OPTIONS = _prepare_local_run()
++
+ 
+ import sys
+ import os
+@@ -11,10 +85,15 @@
+ # Specify the path that contains the omniuv package.
+ # Necessary when your source code and the pacakge are not in the same
+ # folder.
+-sys.path.append('.')
++# Local import paths are configured in the header.
+ 
+ # Import the specific OmniUV package
+ from omniuv import *
++# Preserve the explicit ephemeris binding from notebook cell 16.
++from jplephem.spk import SPK
++from omniuv import util as _ephemeris_util
++_ephemeris_util.spk = SPK.open(str(PROJECT_ROOT / 'omni-uv' / 'data' / 'de421.bsp'))
++
+ 
+ with_moon = True
+ 
+@@ -948,7 +1027,6 @@
+ #===============================================================================
+ 
+ def main():
+-    os.environ["HOME"] = "/content/drive/MyDrive/omniuv-master"
+     # Instance of Task class. Entry of the program.
+     task = Task()
+ 
+@@ -1366,7 +1444,7 @@
+ 
+ #=================================== SMBH M87 ==================================
+     # 1. Cargar imagen en blanco y negro
+-    img = PILImage.open("m87_image_normalized.png").convert("L")
++    img = PILImage.open(str(LOCAL_OPTIONS.input)).convert("L")
+     img_data = np.array(img, dtype=np.float32)
+ 
+     # 2. Normalizar la intensidad (en Jy arbitrarios)
+@@ -1417,7 +1495,7 @@
+          lmn.append(np.dot(image.ruvw0, rqu))
+     image.lmn = np.array(lmn)
+ 
+-    img = image_to_omniuv_input("m87_image_normalized.png",task,total_size_ma=None) #
++    img = image_to_omniuv_input(str(LOCAL_OPTIONS.input),task,total_size_ma=None) #
+     src.img = img
+ #-------------------------------------------------------------------------------
+     # GENERACIÓN DE VISIBILIDADES
+@@ -1550,8 +1628,8 @@
+     def plot_uv2(uv, cs, nc, outfile, xlim=None, ylim=None):
+          plt.figure()
+          plt.plot(uv[:,0]/1e7, uv[:,1]/1e7, 'b.', markersize=1)
+-         plt.xlabel('$u\ (10^4\ \mathrm{km})$')
+-         plt.ylabel('$v\ (10^4\ \mathrm{km})$')
++         plt.xlabel(r'$u\ (10^4\ \mathrm{km})$')
++         plt.ylabel(r'$v\ (10^4\ \mathrm{km})$')
+          plt.title('UV Coverage')
+ 
+          if xlim:

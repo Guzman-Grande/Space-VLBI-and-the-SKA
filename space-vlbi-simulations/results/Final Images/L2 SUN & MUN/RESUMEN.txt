@@ -1,0 +1,52 @@
+---------------------------------------------------------------------
+Earth satellite, a: 70.00 x 1E4 km, e: 0.70
+Stations: 7, baselines: 21
+Stations: 9, baselines: 36
+---------------------------------------------------------------------
+SLFRO simulated scans:
+    Total days simulated   :365
+    Orbital period          : 26.18 hours
+    Scans per period          : 1
+    Duration per scan      : 2 hours
+    Time resolution        : 60 seconds
+    Number of timestamps   : 6240
+    Total scans simulated  : 26
+---------------------------------------------------------------------
+uv max: 69.8 x 10^4 km, 62.1 x 10^4 km, rmax = 69.815 x 10^4 km
+[INFO] Resolución esperada: 0.0021 mas
+[INFO] Cellsize fijado: 0.00021 mas
+[INFO] Campo de visión ajustado: 0.070 mas
+[INFO] Tamaño de malla: 512 x 512
+Grid cell size:0.00021 mas
+Image size: 512 x 512 pixels (0.11 mas field of view)
+---------------------------------------------------------------------
+                         RESOLUTION RANGE                            
+resolution at 1.400 GHz (λ = 0.214 m): 0.0633 mas.
+resolution at 6.000 GHz (λ = 0.050 m): 0.0148 mas.
+resolution at 8.000 GHz (λ = 0.037 m): 0.0111 mas.
+resolution at 9.000 GHz (λ = 0.033 m): 0.0098 mas.
+resolution at 43.000 GHz (λ = 0.007 m): 0.0021 mas.
+resolution at 289.000 GHz (λ = 0.001 m): 0.0003 mas.
+---------------------------------------------------------------------
+Cell size given the SMBH image at : 0.00008 mas.
+[INFO] Cell size: 0.00021 mas, dra = 9.99e-13 rad
+[INFO] Imagen adaptada al FOV = 0.106 mas con resolución 0.00021 mas/pixel
+[INFO] Se usarán 261632 píxeles con flujo > 0.01 Jy
+No vis in bl 18
+[DEBUG] Visibilidades generadas: 156054
+--------------------------------------------------------------------------------------
+[DEBUG] Estaciones cargadas:
+  - Very Large Array, SEFD: 54, tipo: EarthFixed
+  - Yebes, SEFD: 340.0, tipo: EarthFixed
+  - TMRT Tianma, SEFD: 120.0, tipo: EarthFixed
+  - Effelsberg, SEFD: 200.0, tipo: EarthFixed
+  - Green Banck Telescope, SEFD: 200.0, tipo: EarthFixed
+  - SKA-MID core, SEFD: 15, tipo: EarthFixed
+  - ALMA, SEFD: 100.0, tipo: EarthFixed
+  - EarthSun L2, SEFD: 30000, tipo: EarthSunL2
+  - me, SEFD: 30000, tipo: MoonEarthL2
+--------------------------------------------------------------------------------------
+Warning: Skipping FITS-IDI export due to empty or invalid baseline data.
+gen_beam_fft(): select 1856338 out of 1872648 vis
+vis shape:  (1872648,)
+gen_image_fft(): select 1856338 out of 1872648 vis

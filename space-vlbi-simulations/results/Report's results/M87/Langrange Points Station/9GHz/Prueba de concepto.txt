@@ -1,0 +1,55 @@
+---------------------------------------------------------------------
+Stations: 15, baselines: 105
+---------------------------------------------------------------------
+SLFRO simulated scans:
+    Total days simulated   : 28
+    Orbital period          : 26.18 hours
+    Scans per period          : 1
+    Duration per scan      : 4 hours
+    Time resolution        : 60 seconds
+    Number of timestamps   : 12480
+    Total scans simulated  : 52
+---------------------------------------------------------------------
+uv max: 69.8 x 10^4 km, 62.1 x 10^4 km, rmax = 69.815 x 10^4 km
+[INFO] Resolución esperada: 0.0098 mas
+[INFO] Cellsize fijado: 0.00098 mas
+[INFO] Campo de visión ajustado: 0.070 mas
+[INFO] Tamaño de malla: 128 x 128
+Grid cell size:0.00098 mas
+Image size: 128 x 128 pixels (0.13 mas field of view)
+---------------------------------------------------------------------
+                         RESOLUTION RANGE                            
+resolution at 8.000 GHz (λ = 0.037 m): 0.0111 mas.
+resolution at 9.000 GHz (λ = 0.033 m): 0.0098 mas.
+---------------------------------------------------------------------
+Cell size given the SMBH image at : 0.00008 mas.
+[INFO] Cell size: 0.00098 mas, dra = 4.77e-12 rad
+[INFO] Imagen adaptada al FOV = 0.126 mas con resolución 0.00098 mas/pixel
+[INFO] Se usarán 16384 píxeles con flujo > 0.01 Jy
+No vis in bl 63
+No vis in bl 64
+No vis in bl 66
+No vis in bl 71
+No vis in bl 72
+No vis in bl 74
+[DEBUG] Visibilidades generadas: 342526
+--------------------------------------------------------------------------------------
+[DEBUG] Estaciones cargadas:
+  - Effelsberg, SEFD: 20.0, tipo: EarthFixed
+  - Cambridge, SEFD: 320.0, tipo: EarthFixed
+  - Yebes, SEFD: 220.0, tipo: EarthFixed
+  - Urumqi, SEFD: 350.0, tipo: EarthFixed
+  - TMRT Tianma, SEFD: 48.0, tipo: EarthFixed
+  - ROBLEDO 70m, SEFD: 27.0, tipo: EarthFixed
+  - ROBLEDO 34m, SEFD: 106.0, tipo: EarthFixed
+  - Green Banck Telescope, SEFD: 15.0, tipo: EarthFixed
+  - SKA-MID core, SEFD: 2.38, tipo: EarthFixed
+  - Parkes, SEFD: 43.0, tipo: EarthFixed
+  - ATCA, SEFD: 47.0, tipo: EarthFixed
+  - Very Large Array, SEFD: 10.7, tipo: EarthFixed
+  - Tidbinbilla, SEFD: 25.0, tipo: EarthFixed
+  - EarthSun L2, SEFD: 200, tipo: EarthSunL2
+  - me, SEFD: 200, tipo: MoonEarthL2
+--------------------------------------------------------------------------------------
+Warning: Skipping FITS-IDI export due to empty or invalid baseline data.
+vis shape:  (1370104,)
