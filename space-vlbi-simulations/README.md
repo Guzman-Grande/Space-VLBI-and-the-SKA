@@ -127,13 +127,24 @@ For a useful reading sequence: read the objectives, choose a figure or scenario,
 
 The internship took place within the OAN/IGN research environment. The [Yebes Observatory](https://rt40m.oan.es/) connects radio astronomy, VLBI observing and receiver technology. Its 40 m telescope is used for both single-dish and interferometric observations; [IGN's facility description](https://astronomia.ign.es/en/web/guest/icts-yebes/servicios-radiotelescopio-40m) gives further context.
 
-![OAN facilities — add the author's selected photograph](docs/images/oan-facilities.jpeg)
-
-*OAN facilities. Photo credit: to be added with the selected photograph.*
-
-![Yebes Observatory and the 40 m radio telescope — add the author's selected photograph](docs/images/yebes-40m.jpeg)
-
-*Yebes Observatory. Photo credit: to be added with the selected photograph.*
+<table>
+  <tr>
+    <th align="center">Observatorio Astronómico Nacional</th>
+    <th align="center">Yebes Observatory</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/images/oan-facilities.jpeg"
+           alt="Observatorio Astronómico Nacional facilities"
+           width="100%">
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/images/yebes-40m.jpeg"
+           alt="The 40-metre radio telescope at Yebes Observatory"
+           width="100%">
+    </td>
+  </tr>
+</table>
 
 <!-- Publication note: the two facility photographs were not present among the supplied attachments. Add them at the paths above and replace the provisional credits before publishing. The report figures are already included. -->
 
