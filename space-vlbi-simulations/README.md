@@ -16,6 +16,18 @@ Developed during an internship at the **Observatorio Astronómico Nacional (OAN)
 
 *A jet brightness model from the internship report, Figure 1. The displayed interpolation helps visualize the input model; it is not an interferometric reconstruction.*
 
+## What this project contributes
+
+This repository brings together the scientific work from the internship and its adaptation to a local Python workflow:
+
+- **Scenario construction:** collecting and implementing mission geometry, observing bands, station properties and observing schedules to explore different space–ground arrays.
+- **Source-model preparation:** adapting both raster PNG images and TXT lists of positions and flux densities into source models usable by OmniUV.
+- **Comparative analysis:** examining UV coverage, point spread functions and dirty images to understand how geometry and frequency influence angular resolution and image structure.
+- **An exploratory Lagrange-point configuration:** studying stations associated with the Earth–Sun L2 and Earth–Moon L2 regions, alongside ground stations. This is a numerical concept study, not a validated flight mission or a complete halo-orbit design.
+- **Reusable local scripts:** moving simulation cells out of Google Colab, replacing Drive-specific paths, adding input checks and organizing outputs by scenario and run in the adapted wrappers.
+
+**OmniUV itself was developed by Lei Liu and collaborators.** My contribution is the internship's scenario work, source adapters, analysis and local adaptations built on that toolkit. The report discusses the work in the context of a prospective SKA Science Book contribution; it does not establish a published chapter or publication outcome.
+
 ## Why VLBI—and why put an antenna in space?
 
 **Very Long Baseline Interferometry (VLBI)** combines radio signals recorded at widely separated telescopes. After correlation, each pair of stations measures a complex visibility: information about the sky brightness on a particular angular scale and orientation. Earth rotation and station motion change those samples with time, tracing out the **UV plane**.
@@ -41,18 +53,6 @@ The SKA connection adds a complementary motivation: very sensitive ground elemen
 | **SKAMPI and VLBI** | A June 2026 preprint reports S-band fringe detections and early VLBI results with the SKA-Mid dish demonstrator and the EVN, LBA and VLBA. This is a concrete integration milestone for a demonstrator, rather than commissioning of the full SKA for VLBI. |
 
 Sources: [LOVEX status paper](https://arxiv.org/abs/2507.16317), [EVN](https://www.evlbi.org/), [SKAMPI VLBI paper](https://arxiv.org/abs/2606.26940).
-
-## What this project contributes
-
-This repository brings together the scientific work from the internship and its adaptation to a local Python workflow:
-
-- **Scenario construction:** collecting and implementing mission geometry, observing bands, station properties and observing schedules to explore different space–ground arrays.
-- **Source-model preparation:** adapting both raster PNG images and TXT lists of positions and flux densities into source models usable by OmniUV.
-- **Comparative analysis:** examining UV coverage, point spread functions and dirty images to understand how geometry and frequency influence angular resolution and image structure.
-- **An exploratory Lagrange-point configuration:** studying stations associated with the Earth–Sun L2 and Earth–Moon L2 regions, alongside ground stations. This is a numerical concept study, not a validated flight mission or a complete halo-orbit design.
-- **Reusable local scripts:** moving simulation cells out of Google Colab, replacing Drive-specific paths, adding input checks and organizing outputs by scenario and run in the adapted wrappers.
-
-**OmniUV itself was developed by Lei Liu and collaborators.** My contribution is the internship's scenario work, source adapters, analysis and local adaptations built on that toolkit. The report discusses the work in the context of a prospective SKA Science Book contribution; it does not establish a published chapter or publication outcome.
 
 ## How the simulations work
 
